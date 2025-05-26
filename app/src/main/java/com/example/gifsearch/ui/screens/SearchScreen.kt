@@ -13,7 +13,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun SearchScreen(
-    onGifClick: (String) -> Unit,
+    onGifClick: (String, String, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     var query by rememberSaveable { mutableStateOf("") }
@@ -30,6 +30,6 @@ fun SearchScreen(
             query = query, onQueryChanged = { query = it }
         )
         Spacer(modifier = Modifier.height(8.dp))
-        GifGrid(searchQuery = query, onGifClick = onGifClick)
+        GifGrid(searchQuery = debouncedQuery, onGifClick = {id, url, title -> onGifClick(id, url, title) } )
     }
 }

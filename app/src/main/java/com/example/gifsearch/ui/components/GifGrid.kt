@@ -26,7 +26,7 @@ import retrofit2.http.Query
 @Composable
 fun GifGrid(
     searchQuery: String,
-    onGifClick: (String) -> Unit,
+    onGifClick: (String, String, String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: SearchViewModel = viewModel()
 ) {
@@ -47,7 +47,7 @@ fun GifGrid(
                         contentScale = ContentScale.Crop,
                         modifier = Modifier
                             .aspectRatio(1f)
-                            .clickable { onGifClick(it.id) }
+                            .clickable { onGifClick(it.id, it.images.original.url, it.title) }
                         )
                 }
             }
