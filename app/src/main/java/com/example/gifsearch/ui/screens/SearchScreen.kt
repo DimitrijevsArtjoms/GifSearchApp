@@ -8,6 +8,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.saveable.rememberSaveable
 import com.example.gifsearch.ui.components.GifGrid
 import com.example.gifsearch.ui.components.SearchBar
+import kotlinx.coroutines.delay
 
 
 @Composable
@@ -16,6 +17,13 @@ fun SearchScreen(
     modifier: Modifier = Modifier
 ) {
     var query by rememberSaveable { mutableStateOf("") }
+    var debouncedQuery by remember { mutableStateOf("") }
+
+    LaunchedEffect(query) {
+        delay(500)
+        debouncedQuery = query
+    }
+
 
     Column(modifier = modifier.fillMaxSize().padding(8.dp)) {
         SearchBar(

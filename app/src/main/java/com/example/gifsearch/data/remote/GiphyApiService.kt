@@ -4,7 +4,7 @@ import com.example.gifsearch.data.models.GiphyResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface GiphyAPIService {
+interface GiphyApiService {
     @GET("v1/gifs/trending")
     suspend fun getTrendingsGifs(
         @Query("api_key") apiKey: String,
